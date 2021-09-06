@@ -34,10 +34,12 @@ func testDataDir(testData string) (string, error) {
 func TestKustomizeBuild(t *testing.T) {
 	appPath, err := testDataDir(kustomization1)
 	assert.Nil(t, err)
+	namespace := "test-namespace"
 	namePrefix := "namePrefix-"
 	nameSuffix := "-nameSuffix"
 	kustomize := NewKustomizeApp(appPath, git.NopCreds{}, "", "")
 	kustomizeSource := v1alpha1.ApplicationSourceKustomize{
+		Namespace:  namespace,
 		NamePrefix: namePrefix,
 		NameSuffix: nameSuffix,
 		Images:     v1alpha1.KustomizeImages{"nginx:1.15.5"},
@@ -58,6 +60,7 @@ func TestKustomizeBuild(t *testing.T) {
 	}
 	for _, obj := range objs {
 		fmt.Println(obj.GetAnnotations())
+		assert.Equal(t, namespace, obj.GetNamespace())
 		switch obj.GetKind() {
 		case "StatefulSet":
 			assert.Equal(t, namePrefix+"web"+nameSuffix, obj.GetName())

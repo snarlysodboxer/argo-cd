@@ -354,6 +354,8 @@ func (images KustomizeImages) Find(image KustomizeImage) int {
 
 // ApplicationSourceKustomize holds options specific to an Application source specific to Kustomize
 type ApplicationSourceKustomize struct {
+	// Namespace sets the namespace of resources for Kustomize apps
+	Namespace string `json:"namespace,omitempty" protobuf:"bytes,9,opt,name=namespace"`
 	// NamePrefix is a prefix appended to resources for Kustomize apps
 	NamePrefix string `json:"namePrefix,omitempty" protobuf:"bytes,1,opt,name=namePrefix"`
 	// NameSuffix is a suffix appended to resources for Kustomize apps

@@ -87,6 +87,14 @@ func mapToEditAddArgs(val map[string]string) []string {
 func (k *kustomize) Build(opts *v1alpha1.ApplicationSourceKustomize, kustomizeOptions *v1alpha1.KustomizeOptions) ([]*unstructured.Unstructured, []Image, error) {
 
 	if opts != nil {
+		if opts.Namespace != "" {
+			cmd := exec.Command(k.getBinaryPath(), "edit", "set", "namespace", "--", opts.Namespace)
+			cmd.Dir = k.path
+			_, err := executil.Run(cmd)
+			if err != nil {
+				return nil, nil, err
+			}
+		}
 		if opts.NamePrefix != "" {
 			cmd := exec.Command(k.getBinaryPath(), "edit", "set", "nameprefix", "--", opts.NamePrefix)
 			cmd.Dir = k.path

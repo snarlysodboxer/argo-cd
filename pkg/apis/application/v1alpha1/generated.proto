@@ -232,6 +232,9 @@ message ApplicationSourceKsonnet {
 
 // ApplicationSourceKustomize holds options specific to an Application source specific to Kustomize
 message ApplicationSourceKustomize {
+  // Namespace sets the namespace of resources for Kustomize apps
+  optional string namespace = 9;
+
   // NamePrefix is a prefix appended to resources for Kustomize apps
   optional string namePrefix = 1;
 

@@ -4976,6 +4976,10 @@
           "type": "string",
           "title": "NameSuffix is a suffix appended to resources for Kustomize apps"
         },
+        "namespace": {
+          "type": "string",
+          "title": "Namespace sets the namespace of resources for Kustomize apps"
+        },
         "version": {
           "type": "string",
           "title": "Version controls which version of Kustomize to use for rendering manifests"

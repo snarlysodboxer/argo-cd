@@ -887,6 +887,13 @@ func schema_pkg_apis_application_v1alpha1_ApplicationSourceKustomize(ref common.
 				Description: "ApplicationSourceKustomize holds options specific to an Application source specific to Kustomize",
 				Type:        []string{"object"},
 				Properties: map[string]spec.Schema{
+					"namespace": {
+						SchemaProps: spec.SchemaProps{
+							Description: "Namespace sets the namespace of resources for Kustomize apps",
+							Type:        []string{"string"},
+							Format:      "",
+						},
+					},
 					"namePrefix": {
 						SchemaProps: spec.SchemaProps{
 							Description: "NamePrefix is a prefix appended to resources for Kustomize apps",
